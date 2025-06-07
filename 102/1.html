@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>人名1 & 人名2 永恆紀念</title>
+  <title id="page-title">人名1 & 人名2 永恆紀念</title>
+
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Lora&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -146,7 +147,8 @@
   </div>
 
   <div class="container" onclick="startMusic()" style="cursor: pointer;">
-    <h1>B & P</h1>
+    <h1 id="names">B & P</h1>
+
     <p class="subtitle">因為有你，世界變得柔軟</p>
 
     <section class="memory-slider">
@@ -172,7 +174,8 @@
     </section>
 
     <div class="quote">「愛，是時間篩選過後依然留下的溫柔。」</div>
-    <footer>&copy; 2025 人名1 & 人名2 愛情紀念相簿</footer>
+    <footer id="footer">&copy; 2025 人名1 & 人名2 愛情紀念相簿</footer>
+
   </div>
 
   <div class="lightbox" id="lightbox">
@@ -237,6 +240,16 @@
         played = true;
       }
     }
+  // 自動載入人名1 & 人名2
+fetch("data.json")
+  .then(res => res.json())
+  .then(data => {
+    const fullNames = `${data.person1} & ${data.person2}`;
+    document.getElementById("page-title").textContent = `${fullNames} 永恆紀念`;
+    document.getElementById("names").textContent = fullNames;
+    document.getElementById("footer").innerHTML = `&copy; 2025 ${fullNames} 愛情紀念相簿`;
+  });
+
   </script>
 </body>
 </html>
